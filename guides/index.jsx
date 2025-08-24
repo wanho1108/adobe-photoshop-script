@@ -10,22 +10,6 @@ if(app.documents.length > 0) {
 	/* Window Dialog */
 	var window = new Window('dialog', 'Create Guides');
 
-	/*try {
-
-		alert(app.activeDocument.selection.bounds);
-
-	} catch(e) {
-
-		alert('[TM] no selection');
-
-	}*/
-
-	// app.activeDocument.selection.deselect();
-	// app.activeDocument.selection.deselect();
-	// alert(app.activeDocument.selection.bounds);
-	// alert(app.activeDocument.selection.bounds[0]); xLeft
-	// alert(app.activeDocument.selection.bounds[2]); xRight
-
 	/* Controller Panel */
 	window.controllerPanel = window.add('panel', undefined, 'Controller');
 	window.controllerPanel.margins = 25;
@@ -67,16 +51,12 @@ if(app.documents.length > 0) {
 				gridColumnWidthTotal = parseInt(gridWidth - gridColumnMarginSum),
 				gridColumnWidth = gridColumnWidthTotal / gridColumns;
 
-		//alert('[TM] Grid Column Width : ' + gridColumnWidth);
-		//alert('[TM] DocumentWidth : ' + documentWidth);
-
 		if(documentWidth < gridWidthOrigin || gridColumnWidth < 1) {
 			alert('Please check the setting value.');
 			return false;
 		}
 
 		if(integerReg.test(gridColumnWidth) === false) {
-			//alert('[TM] gridColumnWidth Interger False');
 			while(integerReg.test(gridColumnWidth) === false) {
 				gridWidthOrigin = gridWidthOrigin - 1;
 				gridWidth = parseInt(gridWidthOrigin - (gridMargin * 2));
@@ -87,16 +67,12 @@ if(app.documents.length > 0) {
 					return false;
 				}
 			}
-			//alert('[TM] Grid Width : ' + gridWidth);
-			//alert('[TM] Grid Column Width : ' + gridColumnWidth);
 			if(confirm('Change Grid Width ? ' + gridWidthOrigin) === false) {
 				return false;
 			}
 		}
 
 		var gridStartPoint = parseInt((documentWidth - gridWidthOrigin) / 2);
-
-		// alert('[TM] ' + gridWidthOrigin + ' = ' + (gridColumnWidth * gridColumns) + ' + ' + (gridColumnMargin * (gridColumns-1) + ' + ' + (gridMargin*2)));
 
 		/* Draw Grid Width */
 		document.guides.add(Direction.VERTICAL, gridStartPoint);
